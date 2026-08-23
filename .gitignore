@@ -1,0 +1,10 @@
+# Evaluation corpus — real scoresheets with real names/dates.
+# Kept out of the repo from day one so open-sourcing later is frictionless.
+fixtures/
+
+# OS / editor
+.DS_Store
+
+# Dependencies & build output (for when the app lands)
+node_modules/
+dist/
