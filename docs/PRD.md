@@ -180,7 +180,7 @@ Implementation choices belong to a later architecture doc; these constraints are
 
 - Installable **offline-first PWA**; static hosting; **no backend of any kind**.
 - Recognition runs entirely in the browser: classical CV for dewarp/segmentation (OpenCV.js-class), a small bundled on-device model for handwritten symbol candidates (ONNX Runtime Web / TF.js-class), and a chess-rules library for the legality engine (chess.js-class).
-- Likely app stack: TypeScript + Vite + React — placeholder, not a commitment.
+- App stack: **TanStack Start** (TypeScript + React on the Vite build pipeline) in SPA/prerender mode — decided 2026-08-24; rationale and M1 verification checks in [SYSTEM_DESIGN §5.10](./SYSTEM_DESIGN.md).
 - Distribution: static host + "Add to Home Screen"; no app-store wrapper in v1.
 
 ## 12. Risks
