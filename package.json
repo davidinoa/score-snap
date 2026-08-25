@@ -42,5 +42,8 @@
       "esbuild",
       "lightningcss"
     ]
+  },
+  "intent": {
+    "skills": ["@tanstack/*"]
   }
 }
