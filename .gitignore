@@ -1,10 +1,17 @@
-# Evaluation corpus — real scoresheets with real names/dates.
-# Kept out of the repo from day one so open-sourcing later is frictionless.
-fixtures/
-
-# OS / editor
+node_modules
 .DS_Store
+dist
+dist-ssr
+*.local
+.env
+.nitro
+.tanstack
+.wrangler
+.output
+.vinxi
+__unconfig*
+todos.json
 
-# Dependencies & build output (for when the app lands)
-node_modules/
-dist/
+# Evaluation corpus — real scoresheets with real names/dates.
+# Kept out of the repo so open-sourcing later is frictionless (PRD §9.1).
+fixtures/
