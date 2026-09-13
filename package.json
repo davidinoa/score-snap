@@ -1,5 +1,6 @@
 {
   "name": "score-snap",
+  "packageManager": "pnpm@10.33.0",
   "private": true,
   "type": "module",
   "imports": {
@@ -11,9 +12,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint",
-    "format": "prettier --write . && eslint --fix",
+    "format": "prettier --write .",
     "check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
