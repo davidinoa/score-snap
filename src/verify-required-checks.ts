@@ -1,1 +1,1 @@
-const shouldFailLint = true
+export const x: string = 123
