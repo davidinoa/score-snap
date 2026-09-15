@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "score-snap",
+  // Worker is delivery plumbing only (ADR-0002): serve the SPA shell +
+  // static assets. Do not add server functions, KV/D1 user data, or
+  // server-side recognition without revisiting ADR-0001.
+  "main": "@tanstack/react-start/server-entry",
+  "compatibility_date": "2026-09-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": false,
+  },
+}
