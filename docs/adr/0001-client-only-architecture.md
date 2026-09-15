@@ -15,5 +15,6 @@ ScoreSnap ships as a static, offline-first PWA: recognition, review, and the gam
 ## Consequences
 
 - The client-only design is a strict subset of a future server design: the storage service (SYSTEM_DESIGN §4.3) is the deliberate **sync seam** — an eventual sync engine bolts on behind that facade with PGN + compressed page blobs as the payload. Nothing built for v1 is wasted if sync arrives.
+- Delivery is a Cloudflare Worker that **only serves the SPA shell and assets** ([ADR-0002](./0002-cloudflare-worker-delivery.md)). That is hosting, not a ScoreSnap backend. A future sync service would extend that Worker; v1 must not grow server functions or store user data there.
 - If a server ever comes, the principle evolves from "nothing leaves the device" to "end-to-end-encrypted sync; recognition still on-device." Server-side _recognition_ stays off the table regardless (PRD principle #1).
 - The correction-data flywheel (learning from user fixes across users) is the one benefit impossible without egress; it stays out unless an explicit opt-in consent model is designed first.
