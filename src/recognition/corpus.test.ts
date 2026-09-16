@@ -4,7 +4,7 @@ import path from 'node:path'
 
 import { afterEach, describe, expect, it } from 'vitest'
 
-import { corpusRoot, listSheets, PGN_FILE, PHOTO_FILE } from './corpus.ts'
+import { corpusRoot, listFixtures, PGN_FILE, PHOTO_FILE } from './corpus.ts'
 
 const temps: string[] = []
 
@@ -14,7 +14,7 @@ function tempRoot(): string {
   return root
 }
 
-function writeSheet(
+function writeFixture(
   root: string,
   id: string,
   files: { photo?: boolean; pgn?: boolean },
@@ -41,38 +41,38 @@ describe('corpusRoot', () => {
   })
 })
 
-describe('listSheets', () => {
+describe('listFixtures', () => {
   it('returns an empty list when the corpus root is missing', () => {
-    expect(listSheets(path.join(tempRoot(), 'does-not-exist'))).toEqual([])
+    expect(listFixtures(path.join(tempRoot(), 'does-not-exist'))).toEqual([])
   })
 
   it('ignores README files and empty directories', () => {
     const root = tempRoot()
     writeFileSync(path.join(root, 'README.md'), '# fixtures')
     mkdirSync(path.join(root, 'notes'))
-    expect(listSheets(root)).toEqual([])
+    expect(listFixtures(root)).toEqual([])
   })
 
-  it('lists well-formed sheets sorted by id', () => {
+  it('lists well-formed fixtures sorted by id', () => {
     const root = tempRoot()
-    writeSheet(root, '2026-06-14-b', { photo: true, pgn: true })
-    writeSheet(root, '2026-06-13-a', { photo: true, pgn: true })
+    writeFixture(root, '2026-06-14-b', { photo: true, pgn: true })
+    writeFixture(root, '2026-06-13-a', { photo: true, pgn: true })
 
-    expect(listSheets(root).map((sheet) => sheet.id)).toEqual([
+    expect(listFixtures(root).map((fixture) => fixture.id)).toEqual([
       '2026-06-13-a',
       '2026-06-14-b',
     ])
   })
 
-  it('throws when a sheet directory is missing the photo', () => {
+  it('throws when a fixture directory is missing the photo', () => {
     const root = tempRoot()
-    writeSheet(root, 'broken', { pgn: true })
-    expect(() => listSheets(root)).toThrow(/missing photo\.jpeg/)
+    writeFixture(root, 'broken', { pgn: true })
+    expect(() => listFixtures(root)).toThrow(/missing photo\.jpeg/)
   })
 
-  it('throws when a sheet directory is missing the PGN', () => {
+  it('throws when a fixture directory is missing the PGN', () => {
     const root = tempRoot()
-    writeSheet(root, 'broken', { photo: true })
-    expect(() => listSheets(root)).toThrow(/missing game\.pgn/)
+    writeFixture(root, 'broken', { photo: true })
+    expect(() => listFixtures(root)).toThrow(/missing game\.pgn/)
   })
 })

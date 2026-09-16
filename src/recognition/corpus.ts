@@ -4,7 +4,7 @@ import path from 'node:path'
 export const PHOTO_FILE = 'photo.jpeg'
 export const PGN_FILE = 'game.pgn'
 
-export type Sheet = {
+export type Fixture = {
   id: string
   dir: string
   photoPath: string
@@ -16,7 +16,7 @@ export function corpusRoot(cwd = process.cwd()): string {
   return path.join(cwd, 'fixtures')
 }
 
-export function listSheets(root: string): Sheet[] {
+export function listFixtures(root: string): Fixture[] {
   if (!existsSync(root)) {
     return []
   }
@@ -25,7 +25,7 @@ export function listSheets(root: string): Sheet[] {
     throw new Error(`corpus root is not a directory: ${root}`)
   }
 
-  const sheets: Sheet[] = []
+  const fixtures: Fixture[] = []
 
   for (const entry of readdirSync(root, { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name.startsWith('.')) {
@@ -43,15 +43,17 @@ export function listSheets(root: string): Sheet[] {
     }
 
     if (!hasPhoto) {
-      throw new Error(`incomplete sheet "${entry.name}": missing ${PHOTO_FILE}`)
+      throw new Error(
+        `incomplete fixture "${entry.name}": missing ${PHOTO_FILE}`,
+      )
     }
 
     if (!hasPgn) {
-      throw new Error(`incomplete sheet "${entry.name}": missing ${PGN_FILE}`)
+      throw new Error(`incomplete fixture "${entry.name}": missing ${PGN_FILE}`)
     }
 
-    sheets.push({ id: entry.name, dir, photoPath, pgnPath })
+    fixtures.push({ id: entry.name, dir, photoPath, pgnPath })
   }
 
-  return sheets.sort((left, right) => left.id.localeCompare(right.id))
+  return fixtures.sort((left, right) => left.id.localeCompare(right.id))
 }
