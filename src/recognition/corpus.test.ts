@@ -41,6 +41,12 @@ describe('corpusRoot', () => {
   })
 })
 
+describe('protect-main probe', () => {
+  it('fails so #11 can confirm a red test job blocks merge', () => {
+    expect(true).toBe(false)
+  })
+})
+
 describe('listFixtures', () => {
   it('returns an empty list when the corpus root is missing', () => {
     expect(listFixtures(path.join(tempRoot(), 'does-not-exist'))).toEqual([])
