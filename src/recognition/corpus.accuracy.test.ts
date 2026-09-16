@@ -2,7 +2,7 @@ import { readFileSync, statSync } from 'node:fs'
 
 import { describe, expect, it } from 'vitest'
 
-import { corpusRoot, listFixtures } from './corpus.ts'
+import { corpusRoot, listFixtures } from './corpus'
 
 const fixtures = listFixtures(corpusRoot())
 

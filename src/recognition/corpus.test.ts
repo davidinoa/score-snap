@@ -4,7 +4,7 @@ import path from 'node:path'
 
 import { afterEach, describe, expect, it } from 'vitest'
 
-import { corpusRoot, listFixtures, PGN_FILE, PHOTO_FILE } from './corpus.ts'
+import { corpusRoot, listFixtures, PGN_FILE, PHOTO_FILE } from './corpus'
 
 const temps: string[] = []
 
